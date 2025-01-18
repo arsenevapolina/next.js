@@ -14,11 +14,11 @@ export const Card = ({
 }: CardProps): JSX.Element => {
   return (
     <div className={styles["card-wrapper"]}>
-      <div className={styles["img-wrapper"]}>
+      <div className={styles["img"]}>
         <Image src={img} alt="like-icon" width={300} height={192} />
       </div>
       <div className={styles["content-wrapper"]}>
-        <div className={styles["wrapper"]}>
+        <div className={styles["top-content"]}>
           <span className={styles["front"]}>Front-end</span>
           <span className={styles["point"]}>·</span>
           <span className={styles["time"]}>1 месяц назад</span>
@@ -40,9 +40,14 @@ export const Card = ({
       </div>
       <div className={styles["card-bottom"]}>
         <span className={styles["time"]}>{time} минуты</span>
-        <div className={styles["like"]}>
+        <div className={styles["read"]}>
           <Link href="#">Читать</Link>
-          <Image src="/arrow-icon.svg" alt="arrow-icon" width={20} height={20} />
+          <Image
+            src="/arrow-icon.svg"
+            alt="arrow-icon"
+            width={20}
+            height={20}
+          />
         </div>
       </div>
     </div>
