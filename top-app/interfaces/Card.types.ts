@@ -10,7 +10,7 @@ export interface Card {
 export const cardContent: Card[] = [
   {
     id: 1,
-    img: "/grid-img.png",
+    img: "/card.png",
     title: "Как работать с CSS Grid",
     text: "Грид-раскладка (CSS Grid Layout) представляет собой двумерную систему сеток в CSS. Гриды подойдут и для верстки основных областей страницы..",
     time: 3,

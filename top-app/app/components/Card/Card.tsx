@@ -15,7 +15,7 @@ export const Card = ({
   return (
     <div className={styles["card-wrapper"]}>
       <div className={styles["img-wrapper"]}>
-        <Image src={img} alt={title} width={300} height={192} />
+        <Image src={img} alt="like-icon" width={300} height={192} />
       </div>
       <div className={styles["content-wrapper"]}>
         <div className={styles["wrapper"]}>
@@ -42,7 +42,7 @@ export const Card = ({
         <span className={styles["time"]}>{time} минуты</span>
         <div className={styles["like"]}>
           <Link href="#">Читать</Link>
-          <Image src="/arrow.svg" alt="Ikonka strelki" width={20} height={20} />
+          <Image src="/arrow-icon.svg" alt="arrow-icon" width={20} height={20} />
         </div>
       </div>
     </div>
