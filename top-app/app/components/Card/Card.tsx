@@ -3,6 +3,7 @@ import { CardProps } from "./Card.props";
 import styles from "./Card.module.css";
 import Image from "next/image";
 import Likes from "../Likes/Likes";
+import Link from "next/link";
 
 export const Card = ({ likes }: CardProps): JSX.Element => {
   return (
@@ -26,22 +27,22 @@ export const Card = ({ likes }: CardProps): JSX.Element => {
       <div>
         <h2 className={styles["h2"]}>Как работать с CSS Grid</h2>
         <p className={styles["p"]}>
-          <a
+          <Link
             className={styles["link"]}
             href="https://developer.mozilla.org/ru/docs/Web/CSS/CSS_grid_layout"
             target="_blank"
             rel="noopener noreferrer"
           >
             Grid-раскладка (CSS Grid Layout)
-          </a>{" "}
-          представляет собой двумерную систему сеток в CSS. Гриды подойдут и для
-          верстки основных областей страницы.
+          </Link>{" "}
+          представляет собой двумерную систему сеток в CSS. Grid'ы подойдут и
+          для верстки основных областей страницы.
         </p>
       </div>
       <div className={styles["card-bottom"]}>
         <span className={styles["time"]}>3 минуты</span>
         <div className={styles["like"]}>
-          <a href="#">Читать</a>
+          <Link href="#">Читать</Link>
           <Image src="/arrow.svg" alt="Иконка стрелки" width={20} height={20} />
         </div>
       </div>
