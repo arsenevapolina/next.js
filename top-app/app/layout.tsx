@@ -3,7 +3,7 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "CSS Grid",
+  title: "Blog",
   description: "How to work with CSS Grid",
 };
 
