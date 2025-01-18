@@ -1,0 +1,22 @@
+.like,
+.like a {
+    color: var(--blue-color);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.34px;
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    color: var(--basic-text-color);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.34px;
+}
+
+.like-wrapper {
+    display: flex;
+    justify-content: baseline;
+    gap: 2px;
+}
