@@ -1,24 +1,32 @@
 "use client";
 
-import React, { JSX } from "react";
+import React, { JSX, useState } from "react";
 import { Card } from "./components/Card/Card";
 import { cardContent } from "../interfaces/Card.types";
 import LikeButton from "./components/LikeButton/LikeButton";
 import axios from "axios";
 
 export default function Home(): JSX.Element {
-  const updatePost = async (id: string) => {
+  const [posts, setPosts] = useState(cardContent);
+
+  const updatePost = async (id: string, currentLikes: number) => {
     try {
       const response = await axios.patch(
         `https://jsonplaceholder.typicode.com/posts/${id}`,
         {
-          title: "updated",
+          likes: currentLikes + 1,
         },
         {
           headers: {
             "Content-type": "application/json",
           },
         }
+      );
+
+      setPosts(
+        posts.map((post) =>
+          post.id === parseInt(id) ? { ...post, likes: post.likes + 1 } : post
+        )
       );
 
       console.log("Successful request", response.data);
@@ -28,19 +36,21 @@ export default function Home(): JSX.Element {
   };
 
   return (
-    <>
-      {cardContent.map((card) => (
-        <Card
-          key={card.id}
-          img={card.img}
-          title={card.title}
-          text={card.text}
-          time={card.time}
-          likes={card.likes}
-        />
+    <div>
+      {posts.map((card) => (
+        <div key={card.id}>
+          <Card
+            img={card.img}
+            title={card.title}
+            text={card.text}
+            time={card.time}
+            likes={card.likes}
+          />
+          <LikeButton
+            onChange={() => updatePost(card.id.toString(), card.likes)}
+          />
+        </div>
       ))}
-      <br />
-      <LikeButton onChange={() => updatePost("1")} />
-    </>
+    </div>
   );
 }
