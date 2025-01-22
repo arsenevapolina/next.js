@@ -8,7 +8,7 @@ export default function LikesWrapper({
 }: LikesWrapperProps): JSX.Element {
   return (
     <div className={styles["like-wrapper"]}>
-      <span className={styles["time"]}>{likes}</span>
+      <div className={styles["time"]}>{likes}</div>
       <Image
         src="/small-like-icon.svg"
         alt="like-icon"
