@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    padding: 23px 22px 23px 10px;
+    max-width: 1226px;
+    margin: auto;
+    margin-top: 8px;
+    margin-bottom: 17px;
+}

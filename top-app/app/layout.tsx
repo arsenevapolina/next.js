@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
+import Header from "./layouts/Header/Header";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${openSans.variable}`}>
+        <Header />
         <main>{children}</main>
       </body>
     </html>

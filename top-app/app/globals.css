@@ -16,7 +16,12 @@ body {
   font-family: "Open_Sans",
     serif;
   color: black;
-  background: var(--border-color);
+  background: var(--background-color);
+}
+
+main {
+  max-width: 1226px;
+  margin: auto;
 }
 
 a {

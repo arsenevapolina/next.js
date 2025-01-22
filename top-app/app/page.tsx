@@ -46,6 +46,7 @@ export default function Home(): JSX.Element {
             time={card.time}
             likes={card.likes}
           />
+          <br />
           <LikeButton
             onChange={() => updatePost(card.id.toString(), card.likes)}
           />
