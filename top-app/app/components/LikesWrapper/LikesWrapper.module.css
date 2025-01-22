@@ -1,0 +1,12 @@
+.like-wrapper {
+    display: flex;
+    max-height: 16px;
+    gap: 2px;
+}
+
+.time {
+    color: var(--basic-text-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.34px;
+}

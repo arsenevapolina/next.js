@@ -1,110 +1,58 @@
-import Image from "next/image";
+"use client";
+
+import React, { JSX, useState } from "react";
+import { Card } from "./components/Card/Card";
+import { cardContent } from "../interfaces/Card.types";
+import LikeButton from "./components/LikeButton/LikeButton";
+import axios from "axios";
 import styles from "./page.module.css";
-import { Metadata } from "next";
 
-// export const metadata: Metadata = {
-//   title: "Исправленные данные",
-//   description: "Мой текст",
-// };
+export default function Home(): JSX.Element {
+  const [posts, setPosts] = useState(cardContent);
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: 'ComputedMeta',
-    icons: {
-      icon: '/sadfafd.ico'
+  const updatePost = async (id: string, currentLikes: number) => {
+    try {
+      const response = await axios.patch(
+        `https://jsonplaceholder.typicode.com/posts/${id}`,
+        {
+          likes: currentLikes + 1,
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+
+      setPosts(
+        posts.map((post) =>
+          post.id === parseInt(id) ? { ...post, likes: post.likes + 1 } : post
+        )
+      );
+
+      console.log("Successful request", response.data);
+    } catch (error) {
+      console.log("An error occurred during the request:", error);
     }
-  }
-}
+  };
 
-export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className={styles["card-list"]}>
+      {posts.map((card) => (
+        <div key={card.id}>
+          <Card
+            img={card.img}
+            title={card.title}
+            text={card.text}
+            time={card.time}
+            likes={card.likes}
+          />
+          <br />
+          <LikeButton
+            onChange={() => updatePost(card.id.toString(), card.likes)}
+          />
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      ))}
     </div>
   );
 }
