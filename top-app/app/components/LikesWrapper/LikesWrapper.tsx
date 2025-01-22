@@ -1,9 +1,11 @@
 import React, { JSX } from "react";
 import Image from "next/image";
-import styles from "./Likes.module.css";
-import { LikeProps } from "./Likes.props";
+import styles from "./LikesWrapper.module.css";
+import { LikesWrapperProps } from "./LikesWrapper.props";
 
-export default function Like({ likes }: LikeProps): JSX.Element {
+export default function LikesWrapper({
+  likes,
+}: LikesWrapperProps): JSX.Element {
   return (
     <div className={styles["like-wrapper"]}>
       <span className={styles["time"]}>{likes}</span>

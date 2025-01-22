@@ -2,8 +2,8 @@ import { JSX } from "react";
 import { CardProps } from "./Card.props";
 import styles from "./Card.module.css";
 import Image from "next/image";
-import Likes from "../Likes/Likes";
 import Link from "next/link";
+import LikesWrapper from "../LikesWrapper/LikesWrapper";
 
 export const Card = ({
   img,
@@ -23,7 +23,7 @@ export const Card = ({
           <span className={styles["point"]}>·</span>
           <span className={styles["time"]}>1 месяц назад</span>
         </div>
-        <Likes likes={likes} />
+        <LikesWrapper likes={likes} />
       </div>
       <div>
         <h2 className={styles["h2"]}>{title}</h2>
