@@ -6,4 +6,5 @@ export interface CardProps
   text: string;
   time: number;
   likes: number;
+  postId: number;
 }
