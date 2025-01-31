@@ -12,9 +12,11 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo />
-      <a href={githubLink} target="_blank" rel="noopener noreferrer">
-        <GitHubIcon />
-      </a>
+      {githubLink && ( 
+        <a href={githubLink} target="_blank" rel="noopener noreferrer">
+          <GitHubIcon />
+        </a>
+      )}
     </header>
   );
 };
