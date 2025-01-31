@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { ButtonLikeProps } from "./LikeButton.props";
 import styles from "./LikeButton.module.css";
