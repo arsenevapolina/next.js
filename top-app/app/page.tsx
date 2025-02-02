@@ -12,7 +12,7 @@ export default async function Home() {
     console.error("Error fetching posts:", error);
   }
 
-  const limitedPosts = posts.slice(0, 9);
+  const limitedPosts = posts.slice(0, 9); 
 
   return (
     <main>

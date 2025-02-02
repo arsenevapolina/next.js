@@ -58,7 +58,7 @@ export const Card = ({
         <span className={styles["time"]}>{time} минуты</span>
         <LikeButton onChange={handleLike} />
         <div className={styles["read"]}>
-          <Link href="#">Читать</Link>
+          <Link href={`/posts/${postId}`}>Читать</Link>
           <Image
             src="/arrow-icon.svg"
             alt="arrow-icon"

@@ -9,3 +9,4 @@ export async function getPosts(): Promise<Post[]> {
 
   return await res.json();
 }
+
