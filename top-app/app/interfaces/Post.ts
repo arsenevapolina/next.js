@@ -3,7 +3,6 @@ export interface Post {
   id: number;
   title: string;
   body: string;
-  postId: number;
 }
 
 export interface PostContent {

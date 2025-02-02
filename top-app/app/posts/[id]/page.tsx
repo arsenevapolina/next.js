@@ -1,4 +1,4 @@
-import { fetchPostById } from "@/app/api/api"; 
+import { fetchPostById } from "@/app/api/fetchPostById";
 
 export default async function getPostPageContent({
   params,
