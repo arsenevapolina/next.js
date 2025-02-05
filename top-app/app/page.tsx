@@ -1,58 +1,36 @@
-"use client";
-
-import React, { JSX, useState } from "react";
+import { getPosts } from "@/app/api/getPosts";
 import { Card } from "./components/Card/Card";
-import { cardContent } from "../interfaces/Card.types";
-import LikeButton from "./components/LikeButton/LikeButton";
-import axios from "axios";
+import { Post } from "./interfaces/Post";
 import styles from "./page.module.css";
 
-export default function Home(): JSX.Element {
-  const [posts, setPosts] = useState(cardContent);
+export default async function Home() {
+  let posts: Post[] = [];
 
-  const updatePost = async (id: string, currentLikes: number) => {
-    try {
-      const response = await axios.patch(
-        `https://jsonplaceholder.typicode.com/posts/${id}`,
-        {
-          likes: currentLikes + 1,
-        },
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+  try {
+    posts = await getPosts();
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+  }
 
-      setPosts(
-        posts.map((post) =>
-          post.id === parseInt(id) ? { ...post, likes: post.likes + 1 } : post
-        )
-      );
-
-      console.log("Successful request", response.data);
-    } catch (error) {
-      console.log("An error occurred during the request:", error);
-    }
-  };
+  const limitedPosts = posts.slice(0, 9); 
 
   return (
-    <div className={styles["card-list"]}>
-      {posts.map((card) => (
-        <div key={card.id}>
-          <Card
-            img={card.img}
-            title={card.title}
-            text={card.text}
-            time={card.time}
-            likes={card.likes}
-          />
-          <br />
-          <LikeButton
-            onChange={() => updatePost(card.id.toString(), card.likes)}
-          />
-        </div>
-      ))}
-    </div>
+    <main>
+      <div className={styles["card-list"]}>
+        {limitedPosts.map((post) => (
+          <div key={post.id}>
+            <Card
+              img="/card.png"
+              title={post.title}
+              text={post.body}
+              time={3}
+              likes={0}
+              postId={post.id}
+            />
+            <br />
+          </div>
+        ))}
+      </div>
+    </main>
   );
 }
