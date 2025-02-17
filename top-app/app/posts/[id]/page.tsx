@@ -1,25 +1,22 @@
-import { fetchPostById } from "@/app/api/fetchPostById";
+import PageContent from "@/app/components/PageContent/PageContent";
+import { MOCKS } from "@/app/mocks";
 
-export default async function getPostPageContent({
+export default function getPostPageContent({
   params,
 }: {
   params: { id: string };
 }) {
-  const postId = params.id;
+  const postId = parseInt(params.id, 10);
+  const post = MOCKS.find((p) => p.id === postId);
 
-  try {
-    const post = await fetchPostById(postId);
-    return (
-      <>
-        <h1>{post.title}</h1>
-        <p>{post.body}</p>
-      </>
-    );
-  } catch (error) {
-    console.error(
-      "Post page content error: unable to fetch post with id ",
-      postId,
-      error
-    );
+  if (!post) {
+    console.error("Post not found for id:", postId);
+    return null;
   }
+
+  return (
+    <>
+      <PageContent post={post} />
+    </>
+  );
 }
