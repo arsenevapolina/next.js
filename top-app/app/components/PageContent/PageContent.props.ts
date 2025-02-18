@@ -10,4 +10,5 @@ export interface Post {
 
 export interface PageContentProps {
   post: Post;
+  postId: number;
 }

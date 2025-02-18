@@ -16,7 +16,7 @@ export default function getPostPageContent({
 
   return (
     <>
-      <PageContent post={post} />
+      <PageContent post={post} postId={postId} />
     </>
   );
 }

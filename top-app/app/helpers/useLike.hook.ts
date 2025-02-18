@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { updatePost } from "@/app/api/likesInfo";
 
