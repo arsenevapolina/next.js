@@ -7,6 +7,7 @@ import LikesWrapper from "@/app/components/LikesWrapper/LikesWrapper";
 import { PageContentProps } from "./PageContent.props";
 import useLike from "@/app/helpers/useLike.hook";
 import Comments from "@/app/components/Comments/Comments";
+import CommentForm from "../CommentForm/CommentForm";
 
 const PageContent: React.FC<PageContentProps> = ({ post }) => {
   const { currentLikes, handleLike } = useLike(post.id, post.likes || 0);
@@ -38,6 +39,7 @@ const PageContent: React.FC<PageContentProps> = ({ post }) => {
         <ButtonLike onChange={handleLike} />
       </div>
       <Comments postId={post.id} />
+      <CommentForm />
     </div>
   );
 };

@@ -21,7 +21,7 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
           <div className={styles.text}>{comment.text}</div>
         </div>
       ) : (
-        <p className={styles.text}>Комментариев нет.</p>
+        <p className={styles.text}>Комментариев нет</p>
       )}
     </div>
   );
