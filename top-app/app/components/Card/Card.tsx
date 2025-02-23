@@ -1,13 +1,13 @@
 "use client";
 
-import { JSX, useState } from "react";
+import React, { JSX } from "react";
 import { CardProps } from "./Card.props";
 import styles from "./Card.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import LikesWrapper from "../LikesWrapper/LikesWrapper";
-import LikeButton from "../LikeButton/LikeButton";
-import { updatePost } from "@/app/api/likesInfo";
+import ButtonLike from "../LikeButton/LikeButton";
+import useLike from "@/app/helpers/useLike.hook";
 
 export const Card = ({
   img,
@@ -17,16 +17,7 @@ export const Card = ({
   likes,
   postId,
 }: CardProps): JSX.Element => {
-  const [currentLikes, setCurrentLikes] = useState(likes);
-
-  const handleLike = async () => {
-    setCurrentLikes((prevLikes) => prevLikes + 1);
-    try {
-      await updatePost(postId, currentLikes + 1);
-    } catch (error) {
-      console.error("Error updating post:", error);
-    }
-  };
+  const { currentLikes, handleLike } = useLike(postId, likes);
 
   return (
     <div className={styles["card-wrapper"]}>
@@ -56,7 +47,7 @@ export const Card = ({
       </div>
       <div className={styles["card-bottom"]}>
         <span className={styles["time"]}>{time} минуты</span>
-        <LikeButton onChange={handleLike} />
+        <ButtonLike onChange={handleLike} />
         <div className={styles["read"]}>
           <Link href={`/posts/${postId}`}>Читать</Link>
           <Image
