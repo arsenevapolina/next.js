@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LikesWrapper from "../LikesWrapper/LikesWrapper";
 import ButtonLike from "../LikeButton/LikeButton";
-import useLike from "@/app/helpers/useLike.hook";
+import useLike from "@/app/hooks/useLike.hook";
 
 export const Card = ({
   img,

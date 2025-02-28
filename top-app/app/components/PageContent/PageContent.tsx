@@ -5,7 +5,7 @@ import styles from "./PageContent.module.css";
 import ButtonLike from "@/app/components/LikeButton/LikeButton";
 import LikesWrapper from "@/app/components/LikesWrapper/LikesWrapper";
 import { PageContentProps } from "./PageContent.props";
-import useLike from "@/app/helpers/useLike.hook";
+import useLike from "@/app/hooks/useLike.hook";
 import Comments from "@/app/components/Comments/Comments";
 import CommentForm from "../CommentForm/CommentForm";
 
