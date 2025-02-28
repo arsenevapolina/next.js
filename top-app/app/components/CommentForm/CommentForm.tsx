@@ -5,7 +5,7 @@ import TextArea from "../TextArea/TextArea";
 import Button from "../Button/Button";
 import Notification from "../Notification/Notification";
 import { FormData } from "./CommentForm.props";
-import useSubmitComment from "@/app/helpers/useSubmitComment";
+import useSubmitComment from "@/app/hooks/useSubmitComment";
 import styles from "./CommentForm.module.css";
 
 const CommentForm: React.FC = () => {

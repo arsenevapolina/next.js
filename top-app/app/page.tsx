@@ -1,24 +1,23 @@
-import { getPosts } from "@/app/api/getPosts";
+"use client";
 import { Card } from "./components/Card/Card";
-import { Post } from "./interfaces/Post";
+import { useFetchPosts } from "./hooks/useFetchPosts";
+import { useVisibleCount } from "./hooks/useVisibleCount";
 import styles from "./page.module.css";
 
-export default async function Home() {
-  let posts: Post[] = [];
-
-  try {
-    posts = await getPosts();
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-  }
-
-  const limitedPosts = posts.slice(0, 6); 
+export default function Home() {
+  const { posts } = useFetchPosts(6);
+  const visibleCount = useVisibleCount(posts, 800);
 
   return (
     <main>
       <div className={styles["card-list"]}>
-        {limitedPosts.map((post) => (
-          <div key={post.id}>
+        {posts.map((post, index) => (
+          <div
+            key={post.id}
+            className={`${styles.card} ${
+              index < visibleCount ? styles.visible : ""
+            }`}
+          >
             <Card
               img="/card.png"
               title={post.title}
