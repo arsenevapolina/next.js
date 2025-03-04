@@ -12,8 +12,14 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo />
-      {githubLink && ( 
-        <a href={githubLink} target="_blank" rel="noopener noreferrer">
+      {githubLink && (
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Перейти на GitHub"
+          className={styles.githubLink}
+        >
           <GitHubIcon />
         </a>
       )}

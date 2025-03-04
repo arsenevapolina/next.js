@@ -1,5 +1,4 @@
 import { UseFormRegister } from "react-hook-form";
-
 export interface TextAreaProps {
   register: UseFormRegister<any>;
   name: string;

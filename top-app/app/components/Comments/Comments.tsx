@@ -10,18 +10,31 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
 
   return (
     <div>
-      <h2 className={styles.h2}>Комментарии</h2>
+      <h2 className={styles.h2} id="comments-section">
+        Комментарии
+      </h2>
       {comment ? (
-        <div key={comment.id}>
-          <div className={styles.wrapper}>
+        <div
+          key={comment.id}
+          role="article"
+          aria-labelledby={`comment-${comment.id}`}
+        >
+          <div className={styles.wrapper} id={`comment-${comment.id}`}>
             <div className={styles.name}>{comment.name}</div>
-            <div>·</div>
+            <div aria-hidden="true">·</div>
             <div className={styles.email}>{comment.email}</div>
           </div>
-          <div className={styles.text}>{comment.text}</div>
+          <div
+            className={styles.text}
+            aria-describedby={`commentText-${comment.id}`}
+          >
+            {comment.text}
+          </div>
         </div>
       ) : (
-        <p className={styles.text}>Комментариев нет</p>
+        <p className={styles.text} aria-live="polite" id="no-comments-message">
+          Комментариев нет
+        </p>
       )}
     </div>
   );

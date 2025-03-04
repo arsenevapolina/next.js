@@ -1,11 +1,12 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 import styles from "./PageContent.module.css";
 import ButtonLike from "@/app/components/LikeButton/LikeButton";
 import LikesWrapper from "@/app/components/LikesWrapper/LikesWrapper";
 import { PageContentProps } from "./PageContent.props";
-import useLike from "@/app/helpers/useLike.hook";
+import useLike from "@/app/hooks/useLike.hook";
 import Comments from "@/app/components/Comments/Comments";
 import CommentForm from "../CommentForm/CommentForm";
 
@@ -26,7 +27,7 @@ const PageContent: React.FC<PageContentProps> = ({ post }) => {
       </div>
       <Image
         src={post.img}
-        alt={post.h1}
+        alt={`Изображение к посту: ${post.h1}`}
         layout="responsive"
         width={687}
         height={440}
@@ -36,7 +37,7 @@ const PageContent: React.FC<PageContentProps> = ({ post }) => {
       <p className={styles.text}>{post.p}</p>
       <div className={styles["button-wrapper"]}>
         <div className={styles.question}>Понравилось? Жми</div>
-        <ButtonLike onChange={handleLike} />
+        <ButtonLike onChange={handleLike} aria-label="Нравится" />
       </div>
       <Comments postId={post.id} />
       <CommentForm />

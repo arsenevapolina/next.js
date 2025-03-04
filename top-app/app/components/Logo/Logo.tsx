@@ -1,7 +1,16 @@
+import Link from "next/link";
 import styles from "./Logo.module.css";
 
 const Logo = () => {
-  return <span className={styles.logo}>.my_blog</span>;
+  return (
+    <Link
+      href="/"
+      className={styles.logo}
+      aria-label="Перейти на главную страницу"
+    >
+      .my_blog
+    </Link>
+  );
 };
 
 export default Logo;

@@ -27,8 +27,7 @@ const useSubmitComment = () => {
         throw new Error("Не удалось отправить комментарий");
       }
 
-      const result = await response.json();
-      console.log(result);
+      await response.json();
       setSuccessMessage("Комментарий отправлен");
       setErrorMessage(null);
     } catch (error) {

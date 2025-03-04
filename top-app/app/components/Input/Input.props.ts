@@ -1,5 +1,4 @@
 import { UseFormRegister } from "react-hook-form";
-
 export interface InputProps {
   type?: string;
   register: UseFormRegister<any>;
