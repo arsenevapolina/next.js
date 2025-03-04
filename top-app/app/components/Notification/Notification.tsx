@@ -1,36 +1,36 @@
-import React from "react";
-
-interface NotificationProps {
-  message: string;
-  onClose: () => void;
-}
+import React, { useEffect, useRef } from "react";
+import styles from "./Notification.module.css";
+import { NotificationProps } from "./Notification.props";
 
 const Notification: React.FC<NotificationProps> = ({ message, onClose }) => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        padding: "10px",
-        backgroundColor: "#d4edda",
-        color: "#155724",
-        border: "1px solid #c3e6cb",
-        borderRadius: "5px",
-        zIndex: 1000,
-      }}
-    >
+    <div className={styles.notification} role="alert" aria-live="assertive">
       {message}
       <button
         onClick={onClose}
-        style={{
-          marginLeft: "10px",
-          background: "none",
-          border: "none",
-          color: "#155724",
-          cursor: "pointer",
-        }}
+        className={styles.closeButton}
+        ref={buttonRef}
+        aria-label="Закрыть уведомление"
       >
         Закрыть
       </button>

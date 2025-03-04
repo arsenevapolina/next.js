@@ -22,6 +22,10 @@
     align-items: center;
 }
 
+.read:hover, .read:active {
+    color: #06254a;
+}
+
 .time {
     color: var(--basic-text-color);
     font-size: 12px;

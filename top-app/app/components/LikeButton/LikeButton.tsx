@@ -16,11 +16,20 @@ const ButtonLike = ({ onChange, ...props }: ButtonLikeProps) => {
     setActiveState((active) => !active);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
     <button
       {...props}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className={`${styles.button} ${activeState ? styles.buttonActive : ""}`}
+      aria-pressed={activeState}
     >
       {activeState ? <LikeIconActive /> : <LikeIcon />}
     </button>

@@ -20,9 +20,18 @@ export const Card = ({
   const { currentLikes, handleLike } = useLike(postId, likes);
 
   return (
-    <div className={styles["card-wrapper"]}>
+    <div
+      className={styles["card-wrapper"]}
+      role="article"
+      aria-labelledby={`title-${postId}`}
+    >
       <div className={styles["img"]}>
-        <Image src={img} alt="like-icon" width={300} height={192} />
+        <Image
+          src={img}
+          alt={`Изображение поста: ${title}`}
+          width={300}
+          height={192}
+        />
       </div>
       <div className={styles["content-wrapper"]}>
         <div className={styles["top-content"]}>
@@ -32,27 +41,30 @@ export const Card = ({
         </div>
         <LikesWrapper likes={currentLikes} />
       </div>
-      <div>
-        <h2 className={styles["h2"]}>{title}</h2>
-        <p className={styles["p"]}>
-          <Link
-            className={styles["link"]}
-            href="https://developer.mozilla.org/ru/docs/Web/CSS/CSS_grid_layout"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {text}
-          </Link>
-        </p>
-      </div>
+      <h2 id={`title-${postId}`} className={styles["h2"]}>
+        {title}
+      </h2>
+      <p className={styles["p"]}>
+        <Link
+          className={styles["link"]}
+          href="https://developer.mozilla.org/ru/docs/Web/CSS/CSS_grid_layout"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Читать о ${text}`}
+        >
+          {text}
+        </Link>
+      </p>
       <div className={styles["card-bottom"]}>
         <span className={styles["time"]}>{time} минуты</span>
-        <ButtonLike onChange={handleLike} />
+        <ButtonLike onChange={handleLike} aria-label="Нравится" />
         <div className={styles["read"]}>
-          <Link href={`/posts/${postId}`}>Читать</Link>
+          <Link href={`/posts/${postId}`} aria-label={`Читать пост ${title}`}>
+            Читать
+          </Link>
           <Image
             src="/arrow-icon.svg"
-            alt="arrow-icon"
+            alt="Стрелка, указывающая на чтение поста"
             width={20}
             height={20}
           />

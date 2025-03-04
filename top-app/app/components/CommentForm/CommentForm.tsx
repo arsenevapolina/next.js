@@ -50,7 +50,12 @@ const CommentForm: React.FC = () => {
         className={styles.form}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
+        aria-labelledby="commentForm"
       >
+        <h2 id="commentForm" className={styles.formTitle}>
+          Оставить комментарий
+        </h2>
+
         <Input
           name="name"
           register={register}
@@ -59,8 +64,13 @@ const CommentForm: React.FC = () => {
           onFocus={() => handleFocus("name")}
           placeholder="Имя"
           className={styles.input}
+          aria-invalid={!!errors.name}
+          aria-describedby="nameError"
         />
-        <div className={styles.errorMessage}>{errors.name?.message}</div>
+        <div id="nameError" className={styles.errorMessage}>
+          {errors.name?.message}
+        </div>
+
         <Input
           type="email"
           name="email"
@@ -74,8 +84,12 @@ const CommentForm: React.FC = () => {
           onFocus={() => handleFocus("email")}
           placeholder="Email"
           className={styles.input}
+          aria-invalid={!!errors.email}
+          aria-describedby="emailError"
         />
-        <div className={styles.errorMessage}>{errors.email?.message}</div>
+        <div id="emailError" className={styles.errorMessage}>
+          {errors.email?.message}
+        </div>
 
         <TextArea
           name="comment"
@@ -85,9 +99,12 @@ const CommentForm: React.FC = () => {
           onFocus={() => handleFocus("comment")}
           placeholder="Комментарий"
           className={styles.textArea}
+          aria-invalid={!!errors.comment}
+          aria-describedby="commentError"
         />
-
-        <div className={styles.errorMessage}>{errors.comment?.message}</div>
+        <div id="commentError" className={styles.errorMessage}>
+          {errors.comment?.message}
+        </div>
 
         <Button type="submit">Отправить</Button>
       </form>
