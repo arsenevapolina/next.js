@@ -13,15 +13,28 @@ const Input: React.FC<InputProps> = ({
   className,
   onFocus,
 }) => {
+
+  const isRequired = required ? required.value : false;
+
   return (
     <div className={styles.inputWrapper}>
       <input
+        id={name}
         type={type}
         {...register(name, { required, pattern })}
         className={`${error ? styles.errorInput : ""} ${className}`}
         onFocus={onFocus}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={`${name}-error`}
+        aria-label={placeholder}
+        required={isRequired}
       />
+      {error && (
+        <span id={`${name}-error`} className={styles.errorMessage}>
+          {error}
+        </span>
+      )}
     </div>
   );
 };

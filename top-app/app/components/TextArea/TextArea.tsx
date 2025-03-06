@@ -11,14 +11,27 @@ const TextArea: React.FC<TextAreaProps> = ({
   placeholder,
   className,
 }) => {
+
+  const isRequired = required ? required.value : false;
+
   return (
     <div className={styles.textAreaWrapper}>
       <textarea
+        id={name}
         {...register(name, { required })}
         className={`${error ? styles.errorInput : ""} ${className}`}
         onFocus={onFocus}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={error ? `${name}-error` : undefined}
+        aria-label={placeholder}
+        required={isRequired}
       />
+      {error && (
+        <span id={`${name}-error`} className={styles.errorMessage}>
+          {error}
+        </span>
+      )}
     </div>
   );
 };

@@ -1,7 +1,16 @@
 .card-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 33px;
-    justify-items: center;
-    margin-bottom: 31px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
